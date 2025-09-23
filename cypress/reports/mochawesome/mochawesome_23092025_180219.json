@@ -1,0 +1,163 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-09-23T21:02:07.814Z",
+    "end": "2025-09-23T21:02:19.191Z",
+    "duration": 11377,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "05227a41-38a2-45b2-88f0-ca30f812e96a",
+      "title": "",
+      "fullFile": "cypress/e2e/agenda-contatos.cy.js",
+      "file": "cypress/e2e/agenda-contatos.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d961f123-b44f-425b-8a90-6c93fc6e8365",
+          "title": "Testes na aplicação EBAC Agenda de Contatos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar um novo contato",
+              "fullTitle": "Testes na aplicação EBAC Agenda de Contatos Deve adicionar um novo contato",
+              "timedOut": null,
+              "duration": 2377,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[placeholder=\"Nome\"]').type(contato.nome);\ncy.get('input[placeholder=\"Telefone\"]').type(contato.telefone);\ncy.get('input[placeholder=\"E-mail\"]').type(contato.email);\ncy.get(\"button.adicionar\").click();\ncy.wait(\"@postContato\");\ncy.reload();\ncy.wait(\"@getContatos\");\n// Verifica se o contato aparece na lista (usa a classe .contato que a aplicação usa)\ncy.get(\".contato\", {\n  timeout: 10000\n}).should(\"exist\");\ncy.contains(\".contato\", contato.nome, {\n  timeout: 10000\n}).should(\"be.visible\");\ncy.contains(\".contato\", contato.telefone).should(\"be.visible\");\ncy.contains(\".contato\", contato.email).should(\"be.visible\");",
+              "err": {},
+              "uuid": "82cc7c75-b1a9-4191-b225-f60247c37420",
+              "parentUUID": "d961f123-b44f-425b-8a90-6c93fc6e8365",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve editar um contato existente",
+              "fullTitle": "Testes na aplicação EBAC Agenda de Contatos Deve editar um contato existente",
+              "timedOut": null,
+              "duration": 3864,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[placeholder=\"Nome\"]').type(contato.nome);\ncy.get('input[placeholder=\"Telefone\"]').type(contato.telefone);\ncy.get('input[placeholder=\"E-mail\"]').type(contato.email);\ncy.get(\"button.adicionar\").click();\ncy.wait(\"@postContato\");\ncy.reload();\ncy.wait(\"@getContatos\");\ncy.contains(\".contato\", contato.nome, {\n  timeout: 10000\n}).within(() => {\n  cy.get(\"button.edit\").click();\n});\ncy.get('input[placeholder=\"Nome\"]').clear().type(contatoEditado.nome);\ncy.get('input[placeholder=\"Telefone\"]').clear().type(contatoEditado.telefone);\ncy.get('input[placeholder=\"E-mail\"]').clear().type(contatoEditado.email);\ncy.get(\"button.alterar\").click();\n// Espera a alteração ser processada\ncy.wait(\"@putContato\");\ncy.reload();\ncy.wait(\"@getContatos\");\ncy.contains(\".contato\", contatoEditado.nome, {\n  timeout: 10000\n}).should(\"be.visible\");\ncy.contains(\".contato\", contatoEditado.telefone).should(\"be.visible\");\ncy.contains(\".contato\", contatoEditado.email).should(\"be.visible\");",
+              "err": {},
+              "uuid": "80aa0d50-fe09-4df6-bf2d-b35a2e490e3c",
+              "parentUUID": "d961f123-b44f-425b-8a90-6c93fc6e8365",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve editar um contato existente",
+              "fullTitle": "Testes na aplicação EBAC Agenda de Contatos Deve editar um contato existente",
+              "timedOut": null,
+              "duration": 1298,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// ... código para adicionar contato ...\ncy.contains(\".contato\", contato.nome, {\n  timeout: 10000\n}).within(() => {\n  cy.get(\"button.edit\").click();\n});\n// ... código para editar campos ...\ncy.get(\"button.alterar\").click();\ncy.log(\"Esperando o PUT contato\");\ncy.wait(\"@putContato\"); // Agora deve funcionar\ncy.reload();\ncy.wait(\"@getContatos\");\n// Asserções ...",
+              "err": {},
+              "uuid": "b9f83afa-7035-4aca-8716-be5c44840fe4",
+              "parentUUID": "d961f123-b44f-425b-8a90-6c93fc6e8365",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve remover um contato",
+              "fullTitle": "Testes na aplicação EBAC Agenda de Contatos Deve remover um contato",
+              "timedOut": null,
+              "duration": 2336,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// ... código para adicionar contato ...\ncy.contains(\".contato\", contato.nome).within(() => {\n  cy.get(\"button.delete\").click();\n});\ncy.wait(\"@deleteContato\");\ncy.wait(1000);\ncy.reload();\ncy.wait(\"@getContatos\").then(({\n  response\n}) => {\n  cy.log(\"Contatos após delete:\", JSON.stringify(response.body));\n});\ncy.contains(\".contato\", contato.nome, {\n  timeout: 10000\n}).should(\"not.exist\");",
+              "err": {},
+              "uuid": "c034ebf9-22a2-4a77-806b-d5342f707e2b",
+              "parentUUID": "d961f123-b44f-425b-8a90-6c93fc6e8365",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "82cc7c75-b1a9-4191-b225-f60247c37420",
+            "80aa0d50-fe09-4df6-bf2d-b35a2e490e3c",
+            "b9f83afa-7035-4aca-8716-be5c44840fe4",
+            "c034ebf9-22a2-4a77-806b-d5342f707e2b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9875,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "ddmmyyyy_HHMMss"
+      },
+      "version": "6.3.0"
+    }
+  }
+}
