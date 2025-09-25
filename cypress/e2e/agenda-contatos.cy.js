@@ -43,6 +43,7 @@ describe("Testes na aplicação EBAC Agenda de Contatos", () => {
   });
 
   it("Deve editar um contato existente", () => {
+    // Criação do contato para garantir que ele existe
     cy.get('input[placeholder="Nome"]').type(contato.nome);
     cy.get('input[placeholder="Telefone"]').type(contato.telefone);
     cy.get('input[placeholder="E-mail"]').type(contato.email);
@@ -52,6 +53,7 @@ describe("Testes na aplicação EBAC Agenda de Contatos", () => {
     cy.reload();
     cy.wait("@getContatos");
 
+    // Edição do contato
     cy.contains(".contato", contato.nome, { timeout: 10000 }).within(() => {
       cy.get("button.edit").click();
     });
@@ -74,22 +76,8 @@ describe("Testes na aplicação EBAC Agenda de Contatos", () => {
     cy.contains(".contato", contatoEditado.email).should("be.visible");
   });
 
-  it("Deve editar um contato existente", () => {
-    cy.contains(".contato", contato.nome, { timeout: 10000 }).within(() => {
-      cy.get("button.edit").click();
-    });
-
-    cy.get("button.alterar").click();
-
-    cy.log("Esperando o PUT contato");
-    cy.wait("@putContato");
-
-    cy.reload();
-    cy.wait("@getContatos");
-  });
-
   it("Deve remover um contato", () => {
-    cy.contains(".contato", contato.nome).within(() => {
+    cy.contains(".contato", contatoEditado.nome).within(() => {
       cy.get("button.delete").click();
     });
 
@@ -101,7 +89,7 @@ describe("Testes na aplicação EBAC Agenda de Contatos", () => {
       cy.log("Contatos após delete:", JSON.stringify(response.body));
     });
 
-    cy.contains(".contato", contato.nome, { timeout: 10000 }).should(
+    cy.contains(".contato", contatoEditado.nome, { timeout: 10000 }).should(
       "not.exist"
     );
   });
