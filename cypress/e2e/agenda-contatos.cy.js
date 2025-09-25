@@ -43,7 +43,6 @@ describe("Testes na aplicação EBAC Agenda de Contatos", () => {
   });
 
   it("Deve editar um contato existente", () => {
-    // Criação do contato para garantir que ele existe
     cy.get('input[placeholder="Nome"]').type(contato.nome);
     cy.get('input[placeholder="Telefone"]').type(contato.telefone);
     cy.get('input[placeholder="E-mail"]').type(contato.email);
@@ -53,7 +52,6 @@ describe("Testes na aplicação EBAC Agenda de Contatos", () => {
     cy.reload();
     cy.wait("@getContatos");
 
-    // Edição do contato
     cy.contains(".contato", contato.nome, { timeout: 10000 }).within(() => {
       cy.get("button.edit").click();
     });
